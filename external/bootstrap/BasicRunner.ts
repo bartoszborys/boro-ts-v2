@@ -1,7 +1,7 @@
 import { Runner } from "./Runner";
 import { ComponentData } from "../component/types/ComponentData";
 import { ComponentDataProvider } from "../component/providers/ComponentDataProvider";
-import { DefaultCustomElement } from "../component/custom-element/DefaultCustomElement";
+import { DefaultCustomElement } from "./custom-element/DefaultCustomElement";
 
 export class BasicRunner extends Runner{
     bootstrap(dataProviders: {new(...args: any[]): {}}[]) {

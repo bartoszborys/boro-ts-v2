@@ -9,7 +9,7 @@ export class DefaultCustomElement extends CustomElement {
   }
 
   public connectedCallback() {
-    this.replaceWith(this.dom);
+    [...this.dom.children].forEach( child => this.appendChild(child));
   }
 
   public addInputObserver(): void {
