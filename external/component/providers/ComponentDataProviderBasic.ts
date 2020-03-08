@@ -16,8 +16,8 @@ export class ComponentDataProviderBasic extends ComponentDataProvider {
     }
 
     private generateDom(): HTMLElement {
-        const domHolder = document.createElement(this.params.tag);
-        domHolder.innerHTML = this.params.html.toString();
-        return domHolder;
+      const element = document.createElement(this.params.tag);
+      element.innerHTML = this.params.html.toString();
+      return element;
     }
 }
