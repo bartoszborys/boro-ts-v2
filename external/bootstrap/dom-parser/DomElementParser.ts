@@ -1,4 +1,4 @@
-import { ParsedDom } from "./types/ParsedDom";
+import { ParsedDom } from "./ParsedDom";
 
 export interface DomElementParser {
     parse(element: Element): void;

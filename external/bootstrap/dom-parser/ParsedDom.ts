@@ -1,5 +1,5 @@
 export interface ParsedDom {
-  [name: string]: {
+  [value: string]: {
     element: Element;
     name: string;
   }[]

@@ -1,3 +1,3 @@
 export abstract class DomIterator {
-    abstract iterateWith(dom: HTMLElement): void;
+    abstract iterate(dom: HTMLElement): void;
 }

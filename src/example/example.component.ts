@@ -5,4 +5,6 @@ import "./example.style.scss";
   tag: "app-example",
   html: require("./example.template.html"),
 })
-export class Example { }
+export class Example {
+  inTest: string = "Hello world!";
+}

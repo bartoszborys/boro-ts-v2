@@ -1,5 +1,5 @@
-import { ParsedDom } from "../types/ParsedDom";
-import { DomElementParser } from "../DomElementParser";
+import { ParsedDom } from "./ParsedDom";
+import { DomElementParser } from "./DomElementParser";
 
 export class PrefixParser implements DomElementParser {
     private attributes: ParsedDom = {};
@@ -19,13 +19,13 @@ export class PrefixParser implements DomElementParser {
             const minLength = 2;
 
             if(attribute.name.length < minLength) {
-                return;
+                continue;
             }
 
             const prefix = attribute.name.substring(0, 1);
 
             if(prefix !== this.prefix) {
-                return;
+                continue;
             }
 
             this.add(element, attribute);

@@ -3,7 +3,6 @@ import { ComponentData } from "../component/types/ComponentData";
 import { ComponentDataProvider } from "../component/providers/ComponentDataProvider";
 import { DefaultCustomElement } from "./custom-element/DefaultCustomElement";
 import { DefaultDomIterator } from "./dom-parser/DefaultDomIterator";
-import { PrefixParser } from "./dom-parser/parsers/PrefixParser";
 
 export class BasicRunner extends Runner{
     public bootstrap(dataProviders: {new(...args: any[]): {}}[]): void {
@@ -29,15 +28,11 @@ export class BasicRunner extends Runner{
     }
 
     private registerComponents(componentsTags: string[], data: ComponentData): void {
-      new DefaultDomIterator({
-        common: [],
-        component: [],
-        other: []
-      }, componentsTags).iterateWith(data.dom);
-
+      debugger;
       customElements.define(data.tag, class extends DefaultCustomElement {
+        protected binds = new DefaultDomIterator(componentsTags).iterate(data.dom);
         protected dom = data.dom;
-        protected element = data.dataSource;
+        protected model = data.dataSource;
       });
     }
 }
