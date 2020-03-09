@@ -28,7 +28,6 @@ export class BasicRunner extends Runner{
     }
 
     private registerComponents(componentsTags: string[], data: ComponentData): void {
-      debugger;
       customElements.define(data.tag, class extends DefaultCustomElement {
         protected binds = new DefaultDomIterator(componentsTags).iterate(data.dom);
         protected dom = data.dom;

@@ -6,5 +6,5 @@ import "./example.style.scss";
   html: require("./example.template.html"),
 })
 export class Example {
-  inTest: string = "Hello world!";
+  inTest: string = "Hello world2!";
 }

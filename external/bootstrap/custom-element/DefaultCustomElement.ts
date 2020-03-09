@@ -18,7 +18,7 @@ export class DefaultCustomElement extends CustomElement {
       })
     });
 
-    [...this.dom.children].forEach( child => this.appendChild(child));
+    [...(this.dom.cloneNode(true) as HTMLElement).children].forEach( child => this.appendChild(child));
   }
 
   public addInputObserver(): void {
