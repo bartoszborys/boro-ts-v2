@@ -12,6 +12,8 @@ export class DefaultDomIterator extends DomIterator {
         do {
             this.parse(treeWalker.currentNode);
         } while(treeWalker.nextNode())
+
+        
     }
 
     private parse(currentNode: Node) {

@@ -3,15 +3,17 @@ import { ComponentData } from "../component/types/ComponentData";
 import { ComponentDataProvider } from "../component/providers/ComponentDataProvider";
 import { DefaultCustomElement } from "./custom-element/DefaultCustomElement";
 import { DefaultDomIterator } from "./dom-parser/DefaultDomIterator";
-import { InputParser } from "./dom-parser/ComponentParser/InputsParser";
+import { PrefixParser } from "./dom-parser/parsers/PrefixParser";
 
 export class BasicRunner extends Runner{
-    bootstrap(dataProviders: {new(...args: any[]): {}}[]) {
+    public bootstrap(dataProviders: {new(...args: any[]): {}}[]): void {
         const provided = this.getMappedComponentData(dataProviders);
         const componentsTags = provided.map( item => item.tag);
+        
         provided.forEach( (data) => {
           this.registerComponents(componentsTags, data)
         });
+
         [...document.body.children].forEach( element => customElements.upgrade(element) );
     }
 
@@ -27,21 +29,11 @@ export class BasicRunner extends Runner{
     }
 
     private registerComponents(componentsTags: string[], data: ComponentData): void {
-      const parser = new InputParser();
-      const otherParser = new InputParser();
-
       new DefaultDomIterator({
         common: [],
-        component: [
-          parser
-        ],
-        other:[
-          otherParser
-        ]
+        component: [],
+        other: []
       }, componentsTags).iterateWith(data.dom);
-
-      console.log(parser, otherParser);
-
 
       customElements.define(data.tag, class extends DefaultCustomElement {
         protected dom = data.dom;
