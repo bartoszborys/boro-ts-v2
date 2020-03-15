@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import { ComponentParameters } from "./types/ComponentParameters";
-import { ComponentDataProviderBasic } from "./providers/ComponentDataProviderBasic";
+import { ComponentParameters } from "./component-data-provider/types/ComponentParameters";
+import { ComponentDataProviderBasic } from "./component-data-provider/ComponentDataProviderBasic";
 
 export function Component(params: ComponentParameters) {
   return <T extends {new(...args: any[]): {}}>(ComponentImplementation: T): any => {

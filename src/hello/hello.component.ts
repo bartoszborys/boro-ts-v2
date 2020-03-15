@@ -1,4 +1,4 @@
-import { Component } from "../../external/component/Component";
+import { Component } from "../../BoroTS/Component";
 import "./hello.style.scss";
 
 @Component({

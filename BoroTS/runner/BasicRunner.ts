@@ -1,8 +1,8 @@
 import { Runner } from "./Runner";
-import { ComponentData } from "../component/types/ComponentData";
-import { ComponentDataProvider } from "../component/providers/ComponentDataProvider";
-import { DefaultCustomElement } from "./custom-element/DefaultCustomElement";
-import { DefaultDomIterator } from "./dom-parser/DefaultDomIterator";
+import { ComponentData } from "../component-data-provider/types/ComponentData";
+import { ComponentDataProvider } from "../component-data-provider/ComponentDataProvider";
+import { DefaultCustomElement } from "../custom-element/DefaultCustomElement";
+import { DefaultDomIterator } from "../dom-iterator/DefaultDomIterator";
 
 export class BasicRunner extends Runner{
     public bootstrap(dataProviders: {new(...args: any[]): {}}[]): void {

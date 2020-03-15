@@ -1,6 +1,6 @@
 import { DomIterator } from "./DomInterator";
-import { DomElementParser } from "./DomElementParser";
-import { PrefixParser } from "./PrefixParser";
+import { DomElementParser } from "../dom-parser/DomElementParser";
+import { PrefixParser } from "../dom-parser/PrefixParser";
 import { Binds } from "../custom-element/Binds";
 
 export class DefaultDomIterator extends DomIterator {
@@ -40,9 +40,5 @@ export class DefaultDomIterator extends DomIterator {
             this.inputParser.parse(currentNode);
             this.outputParser.parse(currentNode);
         }
-    }
-
-    private parseElementBy(parsers: DomElementParser[], element: HTMLElement): void {
-        parsers.forEach( parser => parser.parse(element) );
     }
 } 

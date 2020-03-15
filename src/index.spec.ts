@@ -1,5 +1,5 @@
-import { ComponentDataProviderBasic } from '../external/component/providers/ComponentDataProviderBasic';
-import { ComponentData } from '../external/component/types/ComponentData';
+import { ComponentDataProviderBasic } from "../external/component-data-provider/ComponentDataProviderBasic";
+import { ComponentData } from "../external/component-data-provider/types/ComponentData";
 
 test("first", () => {
   const result = new ComponentDataProviderBasic({}, {html: require("./index.html"), tag: "abc"}).get();
