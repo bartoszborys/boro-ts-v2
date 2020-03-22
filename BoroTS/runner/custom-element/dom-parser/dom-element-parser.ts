@@ -1,6 +1,5 @@
-import { ReactiveAttributes } from "./reactive-attributes";
+import { ComponentLogic } from "../../component-data-provider/types/component-logic";
 
-export interface DomElementParser {
-    parse(element: Node): void;
-    get(): ReactiveAttributes;
+export abstract class DomElementParser {
+    abstract parse(element: Node, logic: ComponentLogic): void;
 }
