@@ -2,7 +2,7 @@ import { DomElementParser } from "../dom-parser/dom-element-parser";
 import { ParsersDomIterator } from "../dom-iterator/parsers-dom-iterator";
 import { ComponentLogic } from "../../component-data-provider/types/component-logic";
 
-class MockDomElementParser implements DomElementParser {
+class MockDomElementParser extends DomElementParser {
     public elementsCount = 0;
     
     parse(element: Node, logic: ComponentLogic): void {
@@ -16,7 +16,7 @@ const mockParserOne = new MockDomElementParser();
 
 const tested = new ParsersDomIterator(mockParserOne, {});
 
-test("Should iterate over given DOM and put nodes in parsers", () => {
+test("Should iterate over given DOM and put nodes in parser", () => {
     const expectedCount = 5;
 
     tested.iterate(mockDom);

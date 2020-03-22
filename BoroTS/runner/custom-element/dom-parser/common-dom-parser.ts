@@ -3,6 +3,5 @@ import { ComponentLogic } from "../../component-data-provider/types/component-lo
 
 export class CommonDomParser extends DomElementParser {
     public parse(element: Node, logic: ComponentLogic): void {
-        console.log(element, logic);
     }
 }
