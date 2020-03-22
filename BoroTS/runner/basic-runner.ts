@@ -1,8 +1,8 @@
-import { Runner } from "./Runner";
-import { ComponentData } from "../component-data-provider/types/ComponentData";
-import { ComponentDataProvider } from "../component-data-provider/ComponentDataProvider";
-import { DefaultCustomElement } from "../custom-element/DefaultCustomElement";
-import { DefaultDomIterator } from "../dom-iterator/DefaultDomIterator";
+import { Runner } from "./runner";
+import { ComponentData } from "./component-data-provider/types/component-data";
+import { ComponentDataProvider } from "./component-data-provider/component-data-provider";
+import { ComponentCustomElement } from "./custom-element/component-custom-element";
+import { ParsersDomIterator } from "./custom-element/dom-iterator/parsers-dom-iterator";
 
 export class BasicRunner extends Runner{
     public bootstrap(dataProviders: {new(...args: any[]): {}}[]): void {
@@ -21,17 +21,17 @@ export class BasicRunner extends Runner{
         .map(ProviderConstructor => {
           const providerWrapper = new ProviderConstructor()
           if( !(providerWrapper instanceof ComponentDataProvider) ) {
-              throw new Error("Given dataProvider is not instance of IComponentDataProvider");
+              throw new Error("Given dataProvider is not instance of ComponentDataProvider");
           }
           return providerWrapper.get();
         })
     }
 
     private registerComponents(componentsTags: string[], data: ComponentData): void {
-      customElements.define(data.tag, class extends DefaultCustomElement {
-        protected binds = new DefaultDomIterator(componentsTags).iterate(data.dom);
-        protected dom = data.dom;
-        protected model = data.dataSource;
+      customElements.define(data.tag, class extends ComponentCustomElement {
+        protected html = data.html;
+        protected logic = data.logic;
+        protected componentsTags = componentsTags;
       });
     }
 }

@@ -1,5 +1,5 @@
 module.exports = {
-  roots: ['<rootDir>/src'],
+  roots: ['<rootDir>/BoroTs'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
     "^.+\\.html?$": "html-loader-jest",

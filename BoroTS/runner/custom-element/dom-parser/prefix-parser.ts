@@ -1,20 +1,24 @@
-import { ParsedDom } from "./ParsedDom";
-import { DomElementParser } from "./DomElementParser";
+import { ReactiveAttributes } from "./reactive-attributes";
+import { DomElementParser } from "./dom-element-parser";
 
 export class PrefixParser implements DomElementParser {
-    private attributes: ParsedDom = {};
+    private attributes: ReactiveAttributes = {};
 
     constructor(private prefix: string) { }
 
-    public get(): ParsedDom {
+    public get(): ReactiveAttributes {
       return this.attributes;
     }
 
-    public parse(element: Element): void {
+    public parse(element: Node): void {
         this.parseAttributes(element);
     }
     
-    private parseAttributes(element: Element): void {
+    private parseAttributes(element: Node): void {
+        if(!(element instanceof Element)) {
+            throw new Error("Given node is not an element");
+        }
+
         for(const attribute of [...element.attributes]) {
             const minLength = 2;
 
@@ -38,8 +42,8 @@ export class PrefixParser implements DomElementParser {
         }
         
         this.attributes[attribute.value].push({
-          element: element,
-          name: this.getAttributeName(attribute), 
+          inElement: element,
+          attributeName: this.getAttributeName(attribute), 
         })
     }
 
