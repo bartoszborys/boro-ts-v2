@@ -1,8 +1,8 @@
 import { DomElementParserDecorator } from "./dom-element-parser-decorator";
-import { ComponentLogic } from "../../component-data-provider/types/component-logic";
+import { ObservableComponentLogic } from "../../observable-component-data/observable-component-logic";
 
 export class ComponentDomParser extends DomElementParserDecorator {
-    public parse(element: Node, logic: ComponentLogic): void {
+    public parse(element: Node, logic: ObservableComponentLogic): void {
         this.decorated.parse(element, logic);
     }
 }

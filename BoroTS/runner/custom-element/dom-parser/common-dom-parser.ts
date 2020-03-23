@@ -1,7 +1,7 @@
 import { DomElementParser } from "./dom-element-parser";
-import { ComponentLogic } from "../../component-data-provider/types/component-logic";
+import { ObservableComponentLogic } from "../../observable-component-data/observable-component-logic";
 
 export class CommonDomParser extends DomElementParser {
-    public parse(element: Node, logic: ComponentLogic): void {
+    public parse(element: Node, logic: ObservableComponentLogic): void {
     }
 }

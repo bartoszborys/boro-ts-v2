@@ -1,11 +1,11 @@
 import { DomIterator } from "./dom-iterator";
 import { DomElementParser } from "../dom-parser/dom-element-parser";
-import { ComponentLogic } from "../../component-data-provider/types/component-logic";
+import { ObservableComponentLogic } from "../../observable-component-data/observable-component-logic";
 
 export class ParsersDomIterator implements DomIterator {
     constructor(
         private domParser: DomElementParser, 
-        private logic: ComponentLogic
+        private logic: ObservableComponentLogic
     ) { }
 
     public iterate(dom: HTMLElement): void {

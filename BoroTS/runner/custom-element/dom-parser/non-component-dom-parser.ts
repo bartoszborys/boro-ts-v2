@@ -1,50 +1,46 @@
 import { DomElementParserDecorator } from "./dom-element-parser-decorator";
-import { ComponentLogic } from "../../component-data-provider/types/component-logic";
+import { ObservableComponentLogic } from "../../observable-component-data/observable-component-logic";
 
 export class NonComponentDomParser extends DomElementParserDecorator {
-    public parse(element: Node, logic: ComponentLogic): void {
-
+    public parse(element: Node, observableLogic: ObservableComponentLogic): void {
+        debugger;
         if(element instanceof HTMLElement) {
-            this.bindIfNotComponent(element, logic);
+            this.bindIfNotComponent(element, observableLogic);
         }
-        this.decorated.parse(element, logic);
+        this.decorated.parse(element, observableLogic);
     }
 
-    private bindIfNotComponent(element: HTMLElement, logic: ComponentLogic) {
+    private bindIfNotComponent(element: HTMLElement, observableLogic: ObservableComponentLogic) {
         if(element.tagName.includes("-")){
             return;
         }
-        this.bindInputs(element, logic);
-        this.bindEvents(element, logic);
+        this.bindInputs(element, observableLogic);
+        this.bindEvents(element, observableLogic);
     }
 
-    private bindInputs(element: HTMLElement, logic: ComponentLogic): void {
+    private bindInputs(element: HTMLElement, observableLogic: ObservableComponentLogic): void {
         const inputAttributes = this.getExtractor("#").extract([...element.attributes]);
         
         for(const attribute of inputAttributes) {
             const key = attribute.name.substr(1);
-            if(!(key in element)) {
-                return;
-            }
 
+            const valueHandler = this.generateHandlerFor(observableLogic.logic, attribute.value)
             //@ts-ignore
-            element[key] = this.generateHandlerFor(logic, attribute.value)();
+            const updateHandler = () => {debugger; element[key] = valueHandler();};
+            observableLogic.addObserver(updateHandler);
+            updateHandler();
         }
     }
 
-    private bindEvents(element: HTMLElement, logic: ComponentLogic) {
+    private bindEvents(element: HTMLElement, observableLogic: ObservableComponentLogic) {
         const outputAttributes = this.getExtractor("$").extract([...element.attributes]);
         
         for(const attribute of outputAttributes) {
             const key = attribute.name.substr(1) as keyof HTMLElement;
             const keyName = `on${key}`;
-            if(!(keyName in element)) {
-                return;
-            }
 
-            
             //@ts-ignore
-            element[keyName] = this.generateHandlerFor(logic, attribute.value);
+            element[keyName] = this.generateHandlerFor(observableLogic.logic, attribute.value);
         }
     }
 }

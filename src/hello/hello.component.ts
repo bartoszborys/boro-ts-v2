@@ -7,13 +7,9 @@ import "./hello.style.scss";
 })
 export class Hello {
   inTest: string = "Hello world!";
-  visibility: boolean = true;
+  color: boolean = true;
 
   toggle() {
-    console.log("before");
-    console.log(this.visibility);
-    this.visibility = !this.visibility;
-    console.log("after");
-    console.log(this.visibility);
+    this.color = !this.color;
   }
 }
